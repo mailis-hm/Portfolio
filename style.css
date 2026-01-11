@@ -1,0 +1,621 @@
+/* Couleurs & Variables */
+:root {
+    --canard: #045D5D; /* Bleu canard */
+    --canard-dark: #023d3d;
+    --light-grey: #f4f7f6;
+    --text-dark: #333;
+    --white: #ffffff;
+}
+/* Container Flexbox pour aligner photo et texte */
+.about-container {
+    display: flex;
+    align-items: center;
+    gap: 50px; /* Espace entre la photo et le texte */
+    margin-top: 40px;
+}
+
+/* ===================== Navigation ===================== */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px); /* Flou moderne derrière la barre */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+    z-index: 10000;
+
+    
+}
+
+/* Le logo qui sert de bouton Accueil */
+nav .logo {
+    text-decoration: none;
+    color: var(--canard);
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 8px 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+
+
+nav ul {
+    display: flex !important; /* Force l'affichage sur ordinateur */
+    list-style: none;
+    gap: 5px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--text-dark) !important;
+    font-weight: 600;
+    padding: 10px 15px;
+    border-radius: 6px;
+    position: relative;
+    transition: all 0.3s ease;
+    
+}
+
+/* Lors du survol c'est bleu */
+
+nav ul li a:hover {
+    color: var(--canard) !important;
+}
+
+
+
+/* ======================================================================
+   SECTION FORMATION (CASES INTERACTIVES)
+   ====================================================================== */
+
+/* Container principal */
+.formation-container {
+    max-width: 850px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espace entre les cases */
+}
+
+/* Style de la case (fermée) */
+.formation-card {
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border-left: 5px solid var(--canard); /* Bordure décorative à gauche */
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Effet de survol sur la case */
+.formation-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(4, 93, 93, 0.1);
+}
+
+/* En-tête cliquable (Summary) */
+summary {
+    padding: 25px;
+    cursor: pointer;
+    list-style: none; /* Cache la flèche par défaut du navigateur */
+    outline: none;
+}
+
+/* Cache la flèche sur Safari */
+summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Structure interne de l'en-tête */
+.summary-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Badge de la date */
+.summary-header .date {
+    background: var(--canard);
+    color: white;
+    padding: 6px 15px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    min-width: 100px;
+    text-align: center;
+}
+
+/* Titre du diplôme */
+.summary-header h3 {
+    flex: 1;
+    margin-left: 20px;
+    font-size: 1.25rem;
+    color: var(--text-dark);
+}
+
+/* Icône Plus/Moins */
+.summary-header i {
+    color: var(--canard);
+    font-size: 1.2rem;
+    transition: transform 0.4s ease;
+}
+
+/* Rotation de l'icône quand la case est ouverte */
+.formation-card[open] .summary-header i {
+    transform: rotate(45deg); /* Le "+" devient une croix "x" */
+}
+
+/* Contenu détaillé (Panel) */
+.formation-details {
+    padding: 0 25px 25px 25px;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 20px;
+    animation: slideDown 0.4s ease-out; /* Animation d'apparition */
+}
+
+/* Nom de l'école */
+.school {
+    font-weight: 700;
+    color: var(--canard);
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+}
+
+/* Liste des enseignements */
+.formation-details ul {
+    list-style: none;
+    padding-left: 5px;
+}
+
+.formation-details ul li {
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 20px;
+}
+
+/* Puces personnalisées */
+.formation-details ul li::before {
+    content: "▹";
+    position: absolute;
+    left: 0;
+    color: var(--canard);
+    font-weight: bold;
+}
+
+/* Animation d'ouverture fluide */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Ajustement pour mobile */
+@media (max-width: 600px) {
+    .summary-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    .summary-header h3 {
+        margin-left: 0;
+    }
+}
+/* Style de la photo */
+.about-photo {
+    flex: 1; /* Prend une part de l'espace */
+    text-align: right;
+}
+
+.profile-img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover; /* Garde les proportions de la photo */
+    border-radius: 15px; /* Coins arrondis (ou 50% pour un cercle) */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    border: 3px solid var(--canard);
+}
+
+/* Style du texte */
+.about-text {
+    flex: 2; /* Prend deux parts de l'espace (plus large que la photo) */
+    text-align: left;
+}
+
+/* Encadré Objectif de stage */
+.objective-box {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: var(--light-grey);
+    border-left: 5px solid var(--canard);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.1rem;
+    color: var(--canard-dark);
+    border-radius: 0 10px 10px 0;
+}
+
+.objective-box i {
+    font-size: 1.5rem;
+    color: var(--canard);
+}
+
+/* Responsive : On empile sur mobile */
+@media (max-width: 768px) {
+    .about-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .about-photo, .about-text {
+        text-align: center;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+
+
+/* --- Bloc Media Query Corrigé --- */
+@media (max-width: 768px) {
+    /* Au lieu de cacher (display: none), on réduit juste la taille */
+    nav ul li a {
+        font-size: 0.8rem;
+        margin-left: 0.8rem;
+    }
+    header h1 { font-size: 2.2rem; }
+}
+nav ul li a:hover {
+    color: var(--canard);
+}
+
+/* Header / Accueil */
+header {
+    height: 100vh;
+    background: linear-gradient(rgba(4, 93, 93, 0.8), rgba(4, 93, 93, 0.8));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    text-align: center;
+}
+
+header h1 {
+    font-size: 4rem;
+    letter-spacing: 5px;
+}
+
+.btn-linkedin {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    background: var(--white);
+    color: var(--canard);
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    transition: transform 0.3s;
+}
+
+.btn-linkedin:hover {
+    transform: translateY(-3px);
+}
+
+/* Sections communes */
+section {
+    padding: 100px 10%;
+}
+
+section h2 {
+    font-size: 2.5rem;
+    color: var(--canard);
+    margin-bottom: 30px;
+    text-align: center;
+    position: relative;
+}
+
+section h2::after {
+    content: '';
+    width: 50px;
+    height: 3px;
+    background: var(--canard);
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.bg-light { background-color: var(--light-grey); }
+.bg-dark { background-color: var(--canard); color: white; }
+.bg-dark h2 { color: white; }
+.bg-dark h2::after { background: white; }
+
+/* =================== Expériences ==================== */
+.experience-image {
+    width: 300px;
+    height: auto;
+    align-items: center;
+
+}
+
+
+/* =================== Compétences ==================== */
+
+/* Masquer les petits ronds des onglets et des cartes de compétences */
+#competences input[type="radio"],
+#competences .skill-item input[type="checkbox"] {
+    display: none;
+}
+
+/* --- Styles des Onglets (Navigation) --- */
+.skills-nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.btn-skill {
+    padding: 10px 25px;
+    border: 2px solid #045D5D;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+/* Interaction des onglets : Change la couleur du bouton sélectionné */
+#tab-tech:checked ~ .skills-nav label[for="tab-tech"],
+#tab-hum:checked ~ .skills-nav label[for="tab-hum"] {
+    background: #045D5D;
+    color: white;
+}
+
+/* --- Gestion de l'affichage des grilles --- */
+.skills-grid {
+    display: none; /* Caché par défaut */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Si l'onglet Tech est coché, montre la grille Tech */
+#tab-tech:checked ~ .content-tech {
+    display: grid;
+}
+
+/* Si l'onglet Hum est coché, montre la grille Hum */
+#tab-hum:checked ~ .content-hum {
+    display: grid;
+}
+
+/* --- Style des Cases (Cards) --- */
+.skill-card {
+    display: block;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    cursor: pointer;
+    border-bottom: 4px solid #045D5D;
+    transition: all 0.3s;
+}
+
+.skill-detail {
+    max-height: 0; /* Caché par défaut via la hauteur */
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.4s ease;
+    margin-top: 0;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* --- Interaction au clic sur une case (checkbox checked) --- */
+.skill-item input:checked + .skill-card .skill-detail {
+    max-height: 100px; /* Déplie le texte */
+    opacity: 1;
+    margin-top: 15px;
+}
+
+.skill-item input:checked + .skill-card {
+    background: #ffffff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Bouton principal */
+.btn-main {
+    background: var(--canard);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/* Style du conteneur de groupe (Fieldset) */
+.competences-case {
+    border: 2px solid #e0e0e0; /* Bordure légère au lieu du style navigateur */
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 30px;
+    background-color: var(--white);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+/* Style du titre du groupe (Legend) */
+.competences-case legend {
+    background-color: var(--canard);
+    color: var(--white);
+    padding: 5px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-left: 10px; /* Aligne la légende joliment */
+}
+
+
+/* Ajustement de la grille à l'intérieur du fieldset */
+.competences-case .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 10px;
+    border: none; /* On enlève les bordures internes si nécessaire */
+}
+
+/* Style spécifique pour les titres d'items à l'intérieur */
+.competences-case h4 {
+    color: var(--canard-dark);
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    border-left: 3px solid var(--canard);
+    padding-left: 10px;
+}
+
+.projet-image {
+    width: 600px;
+}
+
+
+/* ======================================================================
+   SECTION CONTACT 
+   ====================================================================== */
+.contact-container {
+    display: flex;
+    flex-wrap: wrap; /* Permet au paragraphe de rester en haut si besoin */
+    gap: 50px;
+    align-items: flex-start;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* 1. Le paragraphe "contact-intro" centré en haut */
+.contact-intro {
+    flex: 0 0 100%;        /* Force le bloc à prendre 100% de la largeur */
+    text-align: center;     /* Centre le texte au milieu */
+    margin-bottom: 30px;    /* Espace sous le paragraphe */
+    font-size: 1.1rem;
+    color: var(--white);    /* S'adapte au fond sombre */
+}
+
+
+
+/* 3. L'enveloppe et le texte sur UNE SEULE ligne */
+.info-item {
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    white-space: nowrap; /* Empêche le texte de passer à la ligne */
+}
+
+.contact-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center; /* Centre les blocs d'info horizontalement */
+    text-align: center;  /* Centre le texte lui-même */
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column; /* Met l'icône AU-DESSUS du texte */
+    align-items: center;    /* Centre l'icône et le texte sur l'axe vertical */
+    gap: 10px;
+}
+
+.info-item i {
+    width: 35px;
+    height: 35px;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 1rem;
+    flex-shrink: 0; /* Empêche l'icône de se déformer */
+}
+
+
+
+/* RESPONSIVE : On empile sur mobile */
+@media (max-width: 850px) {
+    .contact-container {
+        flex-direction: column;
+    }
+    .contact-info {
+        flex: none;
+        width: 100%;
+        order: unset;
+    }
+    .info-item {
+        justify-content: center;
+        white-space: normal; /* Permet le retour à la ligne sur très petits écrans */
+    }
+}
+
+/* SECTION CV (CENTRAGE DU BOUTON)
+   ====================================================================== */
+
+#cv {
+    text-align: center; /* Centre le texte (titre et paragraphe) */
+}
+
+.cv-download {
+    display: flex;
+    flex-direction: column; /* Aligne les éléments verticalement */
+    align-items: center;    /* Centre horizontalement tous les éléments du bloc */
+    justify-content: center;
+    gap: 20px;              /* Espace entre le texte et le bouton */
+    margin-top: 30px;
+    padding: 40px;
+    background: var(--light-grey);
+    border-radius: 15px;
+}
+
+/* Optionnel : Style du bouton pour qu'il soit bien visible au milieu */
+.cv-download .btn-main {
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 15px rgba(4, 93, 93, 0.2);
+    transition: all 0.3s ease;
+}
+
+.cv-download .btn-main:hover {
+    transform: scale(1.05); /* Petit effet de zoom au survol */
+    background-color: var(--canard-dark);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    nav ul { display: none; } /* On pourrait ajouter un menu burger ici */
+    header h1 { font-size: 2.5rem; }
+    .skills-container { grid-template-columns: 1fr; }
+}

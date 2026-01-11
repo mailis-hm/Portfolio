@@ -1,0 +1,49 @@
+:root {
+    /* Couleurs */
+    --couleur-primaire: #0077b6;     /* Bleu foncé (ex: pour la navigation et liens) */
+    --couleur-secondaire: #90e0ef;   /* Bleu clair (ex: pour survol) */
+    --couleur-fond: #f8f9fa;         /* Gris très clair/Blanc cassé (fond de page) */
+    --couleur-texte: #343a40;        /* Noir gris (texte général) */
+    --couleur-footer: #495057;       /* Gris foncé (pied de page) */
+
+    /* Typographie */
+    --police-principale: 'Arial', sans-serif;
+    --police-titre: 'Helvetica Neue', sans-serif;
+}
+
+/* ======================================= */
+/* STYLES GÉNÉRAUX                */
+/* ======================================= */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--police-principale);
+    line-height: 1.6;
+    color: var(--couleur-texte);
+    background-color: var(--couleur-fond);
+}
+
+a {
+    text-decoration: none;
+    color: var(--couleur-primaire);
+}
+
+a:hover {
+    color: var(--couleur-secondaire);
+}
+
+/* ======================================= */
+/* HEADER                   */
+/* ======================================= */
+
+header {
+    background-color: var(--couleur-primaire);
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+}

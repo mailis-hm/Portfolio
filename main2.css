@@ -1,0 +1,512 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    /* Couleurs */
+    --color-primary: #0E626D;      /* Vert-bleu principal */
+    --color-dark: #0A484F;         /* Vert-bleu foncé */
+    --color-light: #23868F;        /* Vert-bleu clair */
+    --color-text-dark: #222;       /* Texte principal */
+    --color-text-light: whitesmoke;/* Texte clair */
+    --color-nav-bg: rgba(0, 0, 0, 0.7); /* Fond de navigation semi-transparent */
+    --color-accent-hover: grey;    /* Couleur au survol */
+    
+    /* Espacements (Basés sur 16px = 1rem) */
+    --spacing-xs: 0.5rem;   /* 8px */
+    --spacing-sm: 1rem;     /* 16px */
+    --spacing-md: 2rem;     /* 32px */
+    --spacing-lg: 4rem;     /* 64px */
+    
+    /* Design */
+    --border-radius-sm: 3px;
+    --border-radius-md: 8px;
+    --transition-fast: 0.2s ease;
+    --z-index-nav: 1000;
+}
+
+/* ================ A propos =================== */
+#apropos {
+    display: flex;
+    flex-wrap: wrap;        /* Permet de passer l'un sous l'autre sur mobile */
+    align-items: flex-start; /* Aligne le haut de la photo avec le haut du texte */
+    gap: var(--spacing-md);  /* Utilise ton espacement de 2rem (32px) */
+    padding-top: var(--spacing-sm) !important;
+}
+
+/* Le titre H2 doit prendre toute la largeur en haut */
+#apropos h2 {
+    flex: 1 0 100%; 
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/* Ta photo */
+.photo-moi {
+    width: 250px;           /* Taille fixe pour la photo */
+    height: auto;
+    border-radius: var(--border-radius-md); /* Utilise ton arrondi de 8px */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    margin-top: 0 !important; /* Petite ombre pour le relief */
+}
+
+/* Ton bloc de texte "moi" */
+#moi {
+    flex: 1;                /* Prend tout l'espace restant à droite */
+    min-width: 300px;       /* Largeur min avant de repasser en dessous (mobile) */
+    margin-top: 0 !important;
+}
+
+#moi p {
+    margin-top: 0;          /* Supprime la marge du haut du premier paragraphe */
+    margin-bottom: 1rem;    /* Espace entre les paragraphes */
+    line-height: 1.6;       /* Améliore la lisibilité du texte */
+}
+
+#apropos .photo-moi, 
+#apropos #moi {
+    margin-top: 0 !important; /* Supprime l'espace AU-DESSUS de la photo et du texte */
+}
+
+/* ======================================================================
+   2. Base et Reset
+   ====================================================================== */
+
+/* Reset Box-Sizing et marges/paddings */
+*,
+*::before,
+*::after {
+    box-sizing: border-box; 
+    margin: 0;
+    padding: 0;
+}
+
+/* Base HTML/Typographie */
+html {
+    /* Utilisation de font-size: 100% pour la base REM */
+    font-size: 100%; 
+    font-family: Roboto, sans-serif;
+    color: var(--color-text-dark);
+    scroll-behavior: smooth;
+}
+
+/* Accessibilité: Maintient l'outline pour l'accessibilité (navigation au clavier) */
+*:focus {
+    outline: 2px solid var(--color-light); 
+    outline-offset: 3px;
+}
+
+/* ======================================================================
+   3. Header et Animation
+   ====================================================================== */
+
+header {
+    min-height: 100vh;
+    /* Utilisation des variables pour le dégradé */
+    background: linear-gradient(135deg, var(--color-dark), var(--color-primary), var(--color-light));
+    background-size: 300% 300%;
+    animation: gradientMove 12s ease infinite;
+    background-repeat: no-repeat;
+    color: var(--color-text-light);
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    /* Assure que le contenu ne passe pas sous la nav si elle est transparente */
+    padding-top: 5rem; 
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+header > hgroup {
+    /* Ajout d'une largeur max pour une meilleure lisibilité sur écran large */
+    max-width: 80%;
+    text-align: center;
+}
+
+header > hgroup > * { 
+    margin-top: var(--spacing-sm);
+}
+
+header h1 {
+    font-size: 4rem;
+}
+
+/* Réseaux sociaux */
+#socialnetworks a {
+    color: lightgray;
+    font-size: var(--spacing-md); /* 2rem */
+    transition: color var(--transition-fast);
+}
+
+#socialnetworks a:hover {
+    color: var(--color-accent-hover);
+}
+
+/* ======================================================================
+   4. Navigation (Nav)
+   ====================================================================== */
+
+nav {
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--color-nav-bg); 
+    color: var(--color-text-light);
+    padding: var(--spacing-sm) var(--spacing-md); /* Padding ajusté */
+    z-index: var(--z-index-nav); /* Assure que la nav est au-dessus de tout */
+    /* Optionnel : effet moderne de flou (nécessite un bon support navigateur) */
+    /* backdrop-filter: blur(5px); */ 
+}
+
+nav p {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* Réglages des liens (regroupés) */
+nav p a,
+nav ul a {
+    color: var(--color-text-light);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+nav ul a:hover {
+    color: var(--color-accent-hover);
+}
+
+nav > ul {
+    list-style-type: none;
+    display: flex;
+    /* Utilisation de gap au lieu de margin-left pour un espacement uniforme */
+    gap: var(--spacing-sm); 
+}
+
+/* ======================================================================
+   5. Sections Main
+   ====================================================================== */
+
+main section {
+    box-sizing: border-box;
+    min-height: 100vh;
+    padding: var(--spacing-lg) var(--spacing-md); /* Padding horizontal et vertical */
+}
+
+main section > * {
+    margin: var(--spacing-sm) 0;
+}
+
+/* ======================================================================
+   6. Styles Spécifiques (Compétences & Formation)
+   ====================================================================== */
+
+/* Conteneur de Compétences (Grid) */
+.competences-container {
+    padding-top: var(--spacing-md);
+    gap: var(--spacing-md);
+    
+    /* Amélioration : Responsive Grid avec auto-fit/minmax */
+    /* Assure que les colonnes s'ajustent entre 300px et 1fr */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    max-width: 1200px; /* Ajout d'une largeur maximale */
+    margin: var(--spacing-md) auto;
+}
+
+/* Classe générique pour les colonnes de compétences (au lieu du sélecteur inefficace .col-ling .col-res...) */
+/* Cette classe doit être appliquée à tous vos éléments .col-xxx dans le HTML */
+.competences-col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm); 
+    z-index: 1;
+}
+ 
+/* Case de formation (Card) */
+.resume-formation {
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-sm);
+    border: 1px solid #a0a0a0;
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    /* Ajout d'une ombre pour l'effet de carte */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+ 
+/* Effet de survol */
+.resume-formation:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); 
+}
+ 
+/* Logos et images de formation (Regroupement) */
+.formation-logo,
+.formation-image {
+    margin-right: var(--spacing-sm);
+    border-radius: var(--border-radius-sm);
+    flex-shrink: 0; /* Empêche les images de se rétrécir */
+}
+
+.formation-logo {
+    width: 70px;
+    height: 70px;
+    object-fit: cover; /* Assure que le logo remplit bien son conteneur */
+}
+
+.formation-image {
+    width: 300px;
+    height: auto;
+}
+ 
+/* ======================================================================
+   7. Cartes Génériques (div.cards)
+   ====================================================================== */
+
+div.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--spacing-sm); /* Utilisation de gap */
+}
+
+div.cards > article {
+    box-sizing: border-box;
+    /* Calc pour 4 colonnes avec espacement */
+    width: calc(25% - var(--spacing-sm) * 3 / 4);
+    min-width: 250px; /* Empêche les cartes d'être trop étroites */
+    flex-grow: 1;
+}
+
+
+/* ======================================================================
+   8. Media Queries (Responsiveness)
+   ====================================================================== */
+
+/* Tablette (Max 1024px) */
+@media screen and (max-width: 1024px) {
+    
+    /* Cartes : 2 colonnes */
+    div.cards > article {
+        width: calc(50% - var(--spacing-sm) / 2);
+    }
+}
+
+/* Mobile (Max 640px) */
+@media screen and (max-width: 640px) {
+    /* Header h1 */
+    header h1 {
+        font-size: 3rem;
+    }
+    
+    /* Navigation : empilement vertical et centrage */
+    nav {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-xs);
+        padding: var(--spacing-sm);
+    }
+    
+    /* Liens de navigation */
+    nav > ul {
+        gap: var(--spacing-xs);
+    }
+    
+    /* Sections principales */
+    main section {
+        padding: var(--spacing-md) var(--spacing-sm);
+    }
+    
+    /* Cartes : 1 colonne */
+    div.cards > article {
+        width: 100%;
+    }
+}
+
+#contact {
+    background-color: var(--color-bg-light);
+    padding: var(--spacing-lg) 0; /* Espacement vertical */
+    text-align: center;
+}
+
+.main-content {
+    /* Limiter la largeur du contenu principal pour la lisibilité */
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-sm); /* Padding horizontal pour les petits écrans */
+}
+
+.contact-form-container {
+    background: var(--color-text-light); /* Fond blanc pour le formulaire */
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-sm);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.contact-form-container h2 {
+    font-size: 2rem;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-md);
+    text-align: center;
+}
+
+/* ======================================================================
+   2. Styles du Formulaire et Champs
+   ====================================================================== */
+
+.form-group {
+    margin-bottom: var(--spacing-sm);
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: var(--color-text-dark);
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-sm);
+    font-size: 1rem;
+    color: var(--color-text-dark);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    box-sizing: border-box; /* Assure que padding est inclus dans la largeur */
+    resize: vertical; /* Permet de redimensionner le textarea verticalement */
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(14, 98, 109, 0.2); /* Ombre légère autour du champ focus */
+}
+
+/* Style spécifique pour le placeholder */
+::placeholder {
+    color: #999;
+    opacity: 1; /* S'assure que le placeholder est visible dans tous les navigateurs */
+}
+
+/* ======================================================================
+   3. Bouton d'Envoi
+   ====================================================================== */
+
+.submit-btn {
+    display: inline-block;
+    width: 100%; /* Rend le bouton pleine largeur */
+    padding: 1rem 2rem;
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color var(--transition-fast), transform var(--transition-fast);
+    margin-top: var(--spacing-sm);
+}
+
+.submit-btn:hover {
+    background-color: var(--color-primary-dark);
+    transform: translateY(-2px); /* Léger effet de soulèvement au survol */
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+/* ======================================================================
+   4. Responsive Design (Ajustements pour Mobile)
+   ====================================================================== */
+
+@media (max-width: 600px) {
+    #contact {
+        padding: var(--spacing-md) 0;
+    }
+    
+    .contact-form-container {
+        padding: var(--spacing-sm);
+    }
+    
+    .contact-form-container h2 {
+        font-size: 1.75rem;
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    /* Le bouton reste pleine largeur, mais on peut ajuster le padding */
+    .submit-btn {
+        padding: 0.8rem 1.5rem;
+    }
+}
+
+/* ========== Compétences ============ */
+fieldset {
+    background-color: lightblue;
+}
+
+.competences-container {
+    display: grid;
+    /* Crée une grille qui s'adapte : colonnes de 300px min, remplit l'espace sinon */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: var(--spacing-md);     /* Espace de 32px entre les cartes */
+    padding: var(--spacing-md) 0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Style des cartes (tes fieldset) */
+#competences fieldset.competences-case {
+    background-color: #e0e0e0;  /* Fond gris très clair comme sur ton image */
+    border: none;               /* Supprime la bordure par défaut du fieldset */
+    border-radius: 12px;        /* Arrondit les angles des cartes */
+    padding: var(--spacing-md); /* Espace interne dans la carte */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Ombre très légère pour le relief */
+    margin: 0;                  /* Reset des marges */
+}
+
+/* A modifier */
+/* Style des titres dans les cartes (tes legend) */
+#competences fieldset.competences-case.h3 {
+    color:#0E626D;      /* Couleur orange pour le titre */
+    font-weight: bold;
+    
+    letter-spacing: 1px;        /* Espace un peu les lettres */
+  
+}
+
+/* Style des listes à l'intérieur des cartes */
+.competences-texte {
+    list-style: none;           /* Enlève les puces par défaut */
+    padding-left: 0;            /* Aligne le texte à gauche */
+}
+
+.competences-texte li {
+    margin-bottom: var(--spacing-xs); /* Espace entre les lignes de texte */
+    position: relative;
+    padding-left: 1.2rem;       /* Place pour la petite puce personnalisée */
+}
+
+/* Ajout d'une petite puce personnalisée (le point noir) */
+.competences-texte li::before {
+    content: "•";               /* Utilise un point comme puce */
+    position: absolute;
+    left: 0;
+    color: var(--color-text-dark);
+}
+
+/* Style des mots en gras dans les listes */
+.competences-texte li strong {
+    color: #333;
+    font-weight: 700;
+}

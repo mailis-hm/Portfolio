@@ -1,0 +1,168 @@
+CSS
+
+/* ======================================= */
+/* VARIABLES GLOBALES             */
+/* ======================================= */
+
+:root {
+    /* Couleurs */
+    --couleur-primaire: #0077b6;     /* Bleu foncé (ex: pour la navigation et liens) */
+    --couleur-secondaire: #90e0ef;   /* Bleu clair (ex: pour survol) */
+    --couleur-fond: #f8f9fa;         /* Gris très clair/Blanc cassé (fond de page) */
+    --couleur-texte: #343a40;        /* Noir gris (texte général) */
+    --couleur-footer: #495057;       /* Gris foncé (pied de page) */
+
+    /* Typographie */
+    --police-principale: 'Arial', sans-serif;
+    --police-titre: 'Helvetica Neue', sans-serif;
+}
+
+/* ======================================= */
+/* STYLES GÉNÉRAUX                */
+/* ======================================= */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--police-principale);
+    line-height: 1.6;
+    color: var(--couleur-texte);
+    background-color: var(--couleur-fond);
+}
+
+a {
+    text-decoration: none;
+    color: var(--couleur-primaire);
+}
+
+a:hover {
+    color: var(--couleur-secondaire);
+}
+
+/* ======================================= */
+/* HEADER                   */
+/* ======================================= */
+
+header {
+    background-color: var(--couleur-primaire);
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+hgroup {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+header h1 {
+    font-family: var(--police-titre);
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    opacity: 0.9;
+}
+
+/* Liens réseaux sociaux */
+#socialnetworks {
+    margin-top: 1.5rem;
+}
+
+#socialnetworks a {
+    color: white;
+    font-size: 2rem;
+    margin: 0 0.5rem;
+    transition: color 0.3s ease;
+}
+
+#socialnetworks a:hover {
+    color: var(--couleur-secondaire);
+}
+
+/* ======================================= */
+/* NAVIGATION (NAV)           */
+/* ======================================= */
+
+nav {
+    background-color: var(--couleur-footer);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    position: sticky; /* Rendre la barre de navigation "collante" */
+    top: 0;
+    z-index: 1000;
+}
+
+nav p a {
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li a {
+    display: block;
+    color: white;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Légère transparence au survol */
+    color: var(--couleur-secondaire);
+}
+
+/* ======================================= */
+/* FOOTER                    */
+/* ======================================= */
+
+footer {
+    background-color: var(--couleur-footer);
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 3rem; /* Espacement avec le contenu principal */
+    font-size: 0.9rem;
+}
+
+/* ======================================= */
+/* RÉPONSIVITÉ (BASE)             */
+/* ======================================= */
+
+@media (max-width: 768px) {
+    /* Adapter la navigation pour les petits écrans */
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+
+    nav ul li a {
+        padding: 0.8rem 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+}

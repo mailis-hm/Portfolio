@@ -1,0 +1,255 @@
+/* ======================================================================
+   1. VARIABLES & RESET
+   ====================================================================== */
+   :root {
+    --color-primary: #0E626D;      /* Vert-bleu principal */
+    --color-dark: #0A484F;         /* Vert-bleu foncé */
+    --color-light: #23868F;        /* Vert-bleu clair */
+    --color-text-dark: #222;       /* Texte principal */
+    --color-text-light: whitesmoke;/* Texte clair */
+    --color-nav-bg: rgba(0, 0, 0, 0.7); /* Fond de navigation semi-transparent */
+    --color-accent-hover: grey;    /* Couleur au survol */
+    --sidebar-width: 200px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* ======================================================================
+   2. NAVIGATION (SIDEBAR)
+   ====================================================================== */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: var(--sidebar-width);
+    background: #ffffff;
+    padding-top: 2rem;
+    z-index: 1000;
+    border-right: 1px solid #eee;
+    overflow-y: auto;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.8rem 1.2rem;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background: var(--primary);
+    color: white;
+}
+
+/* Ajustement du contenu principal pour laisser la place à la sidebar */
+main, header, footer {
+    margin-left: var(--sidebar-width);
+}
+
+/* ======================================================================
+   3. HEADER
+   ====================================================================== */
+header {
+    height: 100vh;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+header h1 { font-size: clamp(2rem, 8vw, 3.8rem); }
+header h2 { font-weight: 300; margin: 1rem 0; color: #f2cbd0; }
+
+.socials a {
+    font-size: 2rem;
+    margin: 0 1rem;
+    color: white;
+    transition: 0.3s;
+}
+
+.socials a:hover { color: var(--primary-light); transform: scale(1.2); }
+
+/* ======================================================================
+   4. SECTIONS & ARTICLES
+   ====================================================================== */
+section {
+    max-width: 1000px;
+    margin: auto;
+    padding: 6rem 1rem;
+}
+
+section h2 {
+    text-align: center;
+    font-size: 2.4rem;
+    color: var(--primary);
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+section h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--primary-light);
+    margin: 10px auto;
+    border-radius: 2px;
+}
+
+/* Style des boîtes blanches (Articles) */
+article, .card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border-left: 5px solid var(--primary);
+    transition: 0.3s ease;
+}
+
+article:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+
+/* ======================================================================
+   5. COMPÉTENCES (GRID)
+   ====================================================================== */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.skill-card h3 { color: var(--primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
+
+.skill-card ul li {
+    background: #fdfdfd;
+    margin-bottom: 8px;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.skill-card li::before { content: "▹ "; color: var(--primary); }
+
+/* ======================================================================
+   6. ACCORDÉON (SANS JS - DETAILS/SUMMARY)
+   ====================================================================== */
+/* On stylise les balises natives <details> pour qu'elles ressemblent à ton ancien accordéon */
+details {
+    background: white;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+}
+
+summary {
+    background-color: var(--primary);
+    color: white;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    font-weight: 600;
+    list-style: none; /* Cache la flèche par défaut sur certains navigateurs */
+    transition: 0.3s;
+}
+
+summary:hover { background-color: var(--primary-light); }
+
+/* La petite flèche personnalisée */
+summary::marker { display: none; }
+summary::before {
+    content: "▶";
+    display: inline-block;
+    margin-right: 10px;
+    transition: 0.3s;
+    font-size: 0.8rem;
+}
+
+details[open] summary::before { transform: rotate(90deg); }
+
+.panel {
+    padding: 1.5rem;
+    border-top: 2px solid var(--bg-light);
+}
+
+.panel img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 1rem;
+    display: block;
+}
+
+/* ======================================================================
+   7. BOUTONS & CONTACT
+   ====================================================================== */
+.btn-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white !important;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 2rem auto;
+    transition: 0.3s;
+}
+
+.btn-download:hover { transform: scale(1.05); filter: brightness(1.2); }
+
+address {
+    font-style: normal;
+    text-align: center;
+}
+
+address p { margin: 10px 0; font-size: 1.1rem; }
+address i { color: var(--primary); margin-right: 10px; }
+
+/* ======================================================================
+   8. FOOTER
+   ====================================================================== */
+footer {
+    background: var(--primary);
+    color: white;
+    text-align: center;
+    padding: 3rem 1rem;
+}
+
+/* ======================================================================
+   9. RESPONSIVE
+   ====================================================================== */
+@media (max-width: 1024px) {
+    .sidebar { width: 70px; }
+    .sidebar a { text-align: center; padding: 1rem 0; font-size: 0.7rem; }
+    main, header, footer { margin-left: 70px; }
+}
+
+@media (max-width: 768px) {
+    .sidebar { display: none; } /* Cache la sidebar sur mobile pour un menu classique si besoin */
+    main, header, footer { margin-left: 0; }
+    header h1 { font-size: 2.5rem; }
+}
