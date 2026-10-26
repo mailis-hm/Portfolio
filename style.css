@@ -619,3 +619,30 @@ section h2::after {
     header h1 { font-size: 2.5rem; }
     .skills-container { grid-template-columns: 1fr; }
 }
+
+.dessin-gallery {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;  /* le milieu fait 2x les côtés */
+    align-items: center;   /* centre les images verticalement */
+    gap: 16px;             /* espace entre les images */
+    margin: 20px 0;
+}
+
+.dessin-gallery img {
+    min-width: 0;          /* évite qu'elles débordent */
+    width: 100%;
+    height: auto;
+}
+
+.dessin-gallery img.image-croquis {
+    grid-column: 1 / 3;    /* occupe les colonnes 1 et 2 = 3 parts sur 4 */
+    justify-self: center;  /* la centre dans l'espace disponible */
+}
+
+ 
+@media (max-width: 700px) { /* Pour mobile les images repassent en colonne sur petit écran */
+    .dessin-gallery img.image-croquis {
+        grid-column: 1;
+        width: 100%;
+    }
+}
